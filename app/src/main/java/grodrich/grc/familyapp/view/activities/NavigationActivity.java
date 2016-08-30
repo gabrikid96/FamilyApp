@@ -32,18 +32,23 @@ public class NavigationActivity extends OptionsActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout, R.string.app_name,R.string.app_name);
+        mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.app_name, R.string.app_name) {
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
         mDrawerToggle.setDrawerIndicatorEnabled(true);
 
         drawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
-        mDrawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(navigationView);
-                Log.i("NAVI", "cliked");
-            }
-        });
+
+
+
     }
 
     @Override
