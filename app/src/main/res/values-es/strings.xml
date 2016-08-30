@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_login">Iniciar Sesión</string>
+    <string name="action_sign_in">Registrarse</string>
+    <string name="action_sign_in_short">Registrarse</string>
+    <string name="desc_list_item_icon"></string>
+    <string name="error_field_required">Este campo es obligatorio</string>
+    <string name="error_incorrect_password">La contraseña es incorrecta</string>
+    <string name="error_invalid_email">La dirección de correo es inválida</string>
+    <string name="error_invalid_name">El nombre es demasiado corto</string>
+    <string name="error_invalid_password">La contraseña es demasiado corta</string>
+    <string name="login_information"></string>
+    <string name="no_account">Eres nuevo? Create una cuenta</string>
+    <string name="permission_rationale"></string>
+    <string name="prompt_age">Edad</string>
+    <string name="prompt_name">Nombre</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="title_activity_login">Iniciar Sesión</string>
+    <string name="title_activity_login2">Registrarse</string>
+    <string name="title_activity_sign_in">Registrarse</string>
+    <string name="welcome_title">Bienvenido a</string>
+</resources>

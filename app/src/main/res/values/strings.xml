@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name" translatable="false">FamilyApp</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_sign_in">Sign In</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email" translatable="false">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_login">Login</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_login2">Sign in</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="prompt_name">Name</string>
+    <string name="prompt_age">Age</string>
+    <string name="no_account">New here? Create an account</string>
+    <string name="error_invalid_name">This name is too short</string>
+    <string name="login_information" translatable="false">Login Information</string>
+    <string name="welcome_title">Welcome to</string>
+
+    !-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >Home</item>
+        <item >Find People</item>
+        <item >Photos</item>
+        <item >Communities</item>
+        <item >Pages</item>
+        <item >What\'s Hot</item>
+    </string-array>
+
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_people</item>
+        <item>@drawable/ic_photos</item>
+        <item>@drawable/ic_communities</item>
+        <item>@drawable/ic_pages</item>
+        <item>@drawable/ic_whats_hot</item>
+    </array>
+    <!-- Content Description -->
+<string name="desc_list_item_icon" translatable="false">Item Icon</string>
+</resources>

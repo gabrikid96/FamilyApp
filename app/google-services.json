@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "679415118203",
+    "firebase_url": "https://familyapp-9b063.firebaseio.com",
+    "project_id": "familyapp-9b063",
+    "storage_bucket": "familyapp-9b063.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679415118203:android:a713d27d680bfe81",
+        "android_client_info": {
+          "package_name": "grodrich.grc.familyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679415118203-nispp80b99nn5307fhu2599as4t7dcof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD32C99IfyBLtc6bRydBLUt5dewWDBfXrM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
