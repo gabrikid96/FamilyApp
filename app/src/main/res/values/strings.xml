@@ -44,4 +44,9 @@
     </array>
     <!-- Content Description -->
 <string name="desc_list_item_icon" translatable="false">Item Icon</string>
+    <string name="home_section">Home</string>
+    <string name="family_section">My Family</string>
+    <string name="tasks_section">Tasks</string>
+    <string name="settings_option">Settings</string>
+    <string name="about_option">About</string>
 </resources>

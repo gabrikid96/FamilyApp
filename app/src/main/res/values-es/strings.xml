@@ -19,4 +19,10 @@
     <string name="title_activity_login2">Registrarse</string>
     <string name="title_activity_sign_in">Registrarse</string>
     <string name="welcome_title">Bienvenido a</string>
+    <string name="family_section">Mi Familia</string>
+    <string name="home_section">Inicio</string>
+    <string name="prompt_email" translatable="false"></string>
+    <string name="settings_option">Opciones</string>
+    <string name="tasks_section">Tareas</string>
+    <string name="about_option">Acerca de</string>
 </resources>

@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/menu_seccion_1"
+            android:id="@+id/home_section"
             android:icon="@drawable/ic_home"
-            android:title="Home"/>
+            android:title="@string/home_section"/>
         <item
-            android:id="@+id/menu_seccion_2"
-            android:icon="@drawable/ic_people"
-            android:title="People"/>
+            android:id="@+id/family_section"
+            android:icon="@drawable/ic_family_icon_black"
+            android:title="@string/family_section"/>
         <item
-            android:id="@+id/menu_seccion_3"
+            android:id="@+id/tasks_section"
             android:icon="@drawable/ic_photos"
-            android:title="Photos"/>
+            android:title="@string/tasks_section"/>
     </group>
 
     <item
@@ -20,13 +20,13 @@
         android:title="Other options">
         <menu>
             <item
-                android:id="@+id/menu_opcion_1"
-                android:icon="@drawable/ic_communities"
-                android:title="Communities"/>
+                android:id="@+id/settings_option"
+                android:icon="@android:drawable/ic_menu_preferences"
+                android:title="@string/settings_option"/>
             <item
-                android:id="@+id/menu_opcion_2"
-                android:icon="@drawable/ic_pages"
-                android:title="Pages"/>
+                android:id="@+id/about_option"
+                android:icon="@android:drawable/ic_dialog_info"
+                android:title="@string/about_option"/>
         </menu>
     </item>
 </menu>

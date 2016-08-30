@@ -10,10 +10,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_family_icon_purple"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <category android:name="android.intent.category.LAUNCHER" />
         <activity
             android:name=".view.activities.SignInActivity"
             android:theme="@style/AppTheme"

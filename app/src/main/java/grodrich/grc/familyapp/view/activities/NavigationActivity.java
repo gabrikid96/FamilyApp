@@ -67,16 +67,16 @@ public class NavigationActivity extends OptionsActivity {
     private void itemSelected(MenuItem item) {
         Fragment fragment = null;
         switch (item.getItemId()){
-            case R.id.menu_seccion_1:
+            case R.id.home_section:
                 fragment = new HomeFragment();
                 break;
-            case R.id.menu_seccion_2:
+            case R.id.family_section:
                 break;
-            case R.id.menu_seccion_3:
+            case R.id.tasks_section:
                 break;
-            case R.id.menu_opcion_1:
+            case R.id.settings_option:
                 break;
-            case R.id.menu_opcion_2:
+            case R.id.about_option:
                 break;
         }
 

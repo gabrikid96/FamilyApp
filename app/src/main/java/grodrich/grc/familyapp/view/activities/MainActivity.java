@@ -208,6 +208,7 @@ public class MainActivity extends OptionsActivity {
                 saveLoginInformation(mEmail,mPassword);
                 Snackbar.make(inputPassword, "Login correct", Snackbar.LENGTH_SHORT).show();
                 MainActivity.this.launchIntent(MainActivity.this,NavigationActivity.class);
+                finish();
             }else{
                 animationDelay(200);
                 if (getLoginInformation() != null) {
