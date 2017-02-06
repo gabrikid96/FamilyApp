@@ -23,7 +23,7 @@ public class AuthenticateOptions {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                    Log.i("LOGIN", "onAuthStateChanged:signed_in:" + user.getUid());
+                    Log.i("LOGIN", "Iniciado" + user.getUid());
                 } else {
                     // User is signed out
                     Log.i("LOGIN", "onAuthStateChanged:signed_out");
@@ -46,7 +46,8 @@ public class AuthenticateOptions {
         return mAuth.signInWithEmailAndPassword(email, password);
     }
 
-    public static FirebaseUser getCurrentUser(){
+
+    public static FirebaseUser getCurrentUser() {
         return mAuth.getCurrentUser();
     }
 }

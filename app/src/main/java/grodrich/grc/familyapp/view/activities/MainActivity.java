@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -46,8 +47,6 @@ public class MainActivity extends OptionsActivity {
         listeners();
         loadLoginInformation();
     }
-
-
 
     @Override
     protected void getViewsByXML() {
@@ -109,13 +108,7 @@ public class MainActivity extends OptionsActivity {
         }
     }
 
-    private void saveLoginInformation(String email, String password){
-        SharedPreferences sp = getSharedPreferences(getString(R.string.login_information), 0);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString(getString(R.string.prompt_email), email);
-        editor.putString(getString(R.string.prompt_password), password);
-        editor.commit();
-    }
+
 
     private String[] getLoginInformation(){
         SharedPreferences sp = getSharedPreferences(getString(R.string.login_information), 0);
@@ -175,7 +168,23 @@ public class MainActivity extends OptionsActivity {
         }
     }
 
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    private void badLogin(){
+        animationDelay(200);
+        if (getLoginInformation() != null) {
+            inputEmail.setText(getLoginInformation()[0]);
+            inputPassword.requestFocus();
+        }
+        Snackbar.make(inputPassword, getString(R.string.bad_password), Snackbar.LENGTH_SHORT).show();
+    }
+
+    private void goodLogin(String mEmail, String mPassword ){
+        saveLoginInformation(mEmail,mPassword);
+        Snackbar.make(inputPassword, getString(R.string.good_login), Snackbar.LENGTH_SHORT).show();
+        MainActivity.this.launchIntent(MainActivity.this, NavigationActivity.class);
+        finish();
+    }
+
+    public class UserLoginTask extends AsyncTask<Void, Void, Task<AuthResult>> {
 
         private final String mEmail;
         private final String mPassword;
@@ -189,33 +198,26 @@ public class MainActivity extends OptionsActivity {
         protected void onPreExecute() {
             if (!hasConection()) {
                 cancel(true);
+                Snackbar.make(inputPassword, getString(R.string.no_conection), Snackbar.LENGTH_SHORT).show();
             }else{
                 optionsProgress.setVisibility(View.VISIBLE);
             }
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Task<AuthResult> doInBackground(Void... params) {
             Task<AuthResult> task = ctrl.loginUser(mEmail,mPassword);
-            while (!task.isComplete());
-            return task.isSuccessful();
+            while (!task.isComplete() && ctrl.isDataLoaded());
+            return task;
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
-            if (success){
-                //TODO :Next Activity
-                saveLoginInformation(mEmail,mPassword);
-                Snackbar.make(inputPassword, "Login correct", Snackbar.LENGTH_SHORT).show();
-                MainActivity.this.launchIntent(MainActivity.this,NavigationActivity.class);
-                finish();
+        protected void onPostExecute(final Task<AuthResult> task) {
+            if (task.isSuccessful()){
+                goodLogin(mEmail,mPassword);
+                ctrl.setActualUser();
             }else{
-                animationDelay(200);
-                if (getLoginInformation() != null) {
-                    inputEmail.setText(getLoginInformation()[0]);
-                    inputPassword.requestFocus();
-                }
-                Snackbar.make(inputPassword, "The password is not correct", Snackbar.LENGTH_SHORT).show();
+                badLogin();
             }
             optionsProgress.setVisibility(View.GONE);
 

@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ff0000">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_family_icon_blue"
+    android:layout_height="@dimen/nav_header_height">
+    <grodrich.grc.familyapp.view.views.CircularImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_family_icon_white"
         android:scaleType="centerCrop"
+        android:id="@+id/profileImage"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/imageView"
-        android:layout_margin="10dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-        android:textStyle="bold"
-        android:layout_gravity="bottom"
-        android:layout_above="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/txtLabelUser" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

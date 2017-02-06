@@ -21,8 +21,10 @@
     <string name="welcome_title">Bienvenido a</string>
     <string name="family_section">Mi Familia</string>
     <string name="home_section">Inicio</string>
-    <string name="prompt_email" translatable="false"></string>
+    <string name="prompt_email" translatable="false">Email</string>
     <string name="settings_option">Opciones</string>
     <string name="tasks_section">Tareas</string>
     <string name="about_option">Acerca de</string>
+    <string name="other_options">Otras Opciones</string>
+    <string name="delete_family">Eliminar Familia</string>
 </resources>

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".view.activities.NavigationActivity">
 
     <!-- Layout real de la actividad -->
     <include layout="@layout/navigation_content" />
@@ -18,8 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        android:layout_gravity="start"
         app:headerLayout="@layout/header_navigation_view"
-        app:menu="@menu/menu_navigation_view" />
+        app:menu="@menu/menu_navigation_view"
+        android:layout_gravity="start" />
 
 </android.support.v4.widget.DrawerLayout>

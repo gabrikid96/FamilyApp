@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/membersImages"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+
+            <grodrich.grc.familyapp.view.views.CircularImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/circularImage"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#000000"/>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:id="@+id/family_image"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="@dimen/nav_header_height"
+        android:layout_below="@+id/membersImages" />
+
+    <grodrich.grc.familyapp.view.views.CustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30sp"
+        android:text="Family"
+        android:id="@+id/txt_name_family"
+        android:layout_below="@+id/family_image"
+        android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image_progress_bar"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_marginTop="58dp"
+        android:indeterminate="true" />
+
+    <Button
+        android:text="@string/delete_family"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/btnRemoveFamily"
+        tools:text="@string/delete_family" />
+
+
+</RelativeLayout>

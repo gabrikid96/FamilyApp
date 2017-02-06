@@ -1,36 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".view.activities.SignInActivity">
+    android:layout_height="match_parent">
 
     <ScrollView
-        android:id="@+id/login_form"
+        android:id="@+id/family_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/email_login_form"
+            android:id="@+id/family_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity=""
+                android:id="@+id/txt_family_image"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:text="@string/family_image"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/familyImage"
+                android:maxHeight="@dimen/nav_header_height"
+                android:adjustViewBounds= "true"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_family_icon_blue"
+                android:nestedScrollingEnabled="false"
+                android:onClick="select_image" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/input_name"
+                    android:id="@+id/input_family_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_name"
+                    android:hint="@string/prompt_family_name"
                     android:inputType="textPersonName"
                     android:imeOptions="actionNext"
                     android:maxLines="1"
@@ -42,60 +59,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <AutoCompleteTextView
-                    android:id="@+id/input_age"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_age"
-                    android:inputType="numberDecimal"
-                    android:imeOptions="actionNext"
-                    android:maxLines="1"
-                    android:maxLength="2"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <AutoCompleteTextView
-                    android:id="@+id/sign_in_input_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:hint="@string/prompt_email"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
                 <EditText
-                    android:id="@+id/sign_in_input_password"
+                    android:id="@+id/family_input_password"
                     android:imeOptions="actionGo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
-                    android:imeActionId="@+id/btn_create_family"
+                    android:hint="@string/prompt_optional_password"
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true"/>
 
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <grodrich.grc.familyapp.view.views.CircularImageView
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:id="@+id/userImage"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_family_icon_blue"
-                />
+                <AutoCompleteTextView
+                    android:id="@+id/memberEmail"
+                    android:imeOptions="actionGo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/memberEmail"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+
+            </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/btn_create_family"
@@ -103,13 +93,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
+                android:text="@string/create_family"
                 android:textStyle="bold"/>
 
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sign_in_progress_bar"
+                android:id="@+id/family_progress_bar"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="16dp"
                 android:indeterminate="true"

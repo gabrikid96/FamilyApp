@@ -2,6 +2,7 @@ package grodrich.grc.familyapp.view.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -78,6 +79,14 @@ public abstract class OptionsActivity extends AppCompatActivity {
 
     public void launchIntentForResult(android.content.Context packageContext,java.lang.Class<?> cls, int requestCode, Bundle options){
         startActivity(new Intent(packageContext,cls));
+    }
+
+    protected void saveLoginInformation(String email, String password){
+        SharedPreferences sp = getSharedPreferences(getString(R.string.login_information), 0);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(getString(R.string.prompt_email), email);
+        editor.putString(getString(R.string.prompt_password), password);
+        editor.commit();
     }
 
 }
