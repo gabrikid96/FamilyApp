@@ -53,7 +53,7 @@ public class StorageOptions {
             case FAMILY:
                 return FAMILY_IMAGES_REFERENCE.concat(Controller.getInstance().getActualUser().getFamilyId());
             case USER:
-                return USERS_IMAGES_REFERENCE.concat(Controller.getInstance().getActualUser().getId());
+                return USERS_IMAGES_REFERENCE.concat(Controller.getInstance().getCurrentUser().getEmail());
             default:
                 return null;
         }

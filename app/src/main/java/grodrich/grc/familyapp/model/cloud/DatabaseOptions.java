@@ -9,6 +9,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import grodrich.grc.familyapp.controller.Controller;
 import grodrich.grc.familyapp.model.Family;
 import grodrich.grc.familyapp.model.User;
 
@@ -79,6 +80,22 @@ public class DatabaseOptions {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.i("LOAD_DATA", "Ha fallado la carga de los usuarios");
+            }
+        });
+    }
+
+    public static void getUserById(String id){
+        firebaseDatabase.getReference().child(USER_REFERENCE).child(id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                Controller.getInstance().setActualUser(user);
+                Log.i("USER","User actual updated");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }

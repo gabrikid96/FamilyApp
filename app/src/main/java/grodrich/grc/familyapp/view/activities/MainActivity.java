@@ -215,7 +215,7 @@ public class MainActivity extends OptionsActivity {
         protected void onPostExecute(final Task<AuthResult> task) {
             if (task.isSuccessful()){
                 goodLogin(mEmail,mPassword);
-                ctrl.setActualUser();
+                ctrl.updateUser();
             }else{
                 badLogin();
             }

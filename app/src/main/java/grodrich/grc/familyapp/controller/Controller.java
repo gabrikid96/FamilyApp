@@ -48,10 +48,9 @@ public class Controller {
         return isUsersLoaded && isFamilyLoaded;
     }
 
-    public void setActualUser(){
-        String uid = getCurrentUser().getUid();
-        User user = findUserById(uid);
-        actualUser = user;
+
+    public void updateUser(){
+        DatabaseOptions.getUserById(getCurrentUser().getUid());
     }
 
     public void setActualUser(User user){
@@ -60,15 +59,6 @@ public class Controller {
 
     public User getActualUser() {
         return actualUser;
-    }
-
-    public User findUserById(String uid){
-        for (User user : DatabaseOptions.getUsers()){
-            if (user.getId().equals(uid)){
-                return user;
-            }
-        }
-        return null;
     }
 
 
@@ -127,11 +117,12 @@ public class Controller {
 
     public void associateFamily(Family family) {
         if (family != null) {
-            actualUser.setFamilyId(family.getFamilyId());
+            DatabaseOptions.changeUserInformation(getCurrentUser().getUid(),"familyId",family.getFamilyId());
+            //actualUser.setFamilyId(family.getFamilyId());
         }else{
             actualUser.setFamilyId("");
         }
-        registerNewUser(actualUser);
+        //registerNewUser(actualUser);
 
     }
 
