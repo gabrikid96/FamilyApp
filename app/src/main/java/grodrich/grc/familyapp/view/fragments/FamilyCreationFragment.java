@@ -101,7 +101,6 @@ public class FamilyCreationFragment extends  OptionsFragment{
                 }
             }
         });
-
     }
 
     private void select_image() {
@@ -175,7 +174,13 @@ public class FamilyCreationFragment extends  OptionsFragment{
         public void createFamily(){
             ArrayList<User> members = new ArrayList<User>();
             members.add(ctrl.getActualUser());
+
+            for (String emailMember : emailMembers){ //getting users
+                members.add(ctrl.getUsers().get(emailMember));
+            }
+
             Family family = ctrl.createFamily(familyName,password,members);
+
             ctrl.associateFamily(family);
             ctrl.registerNewFamily(family);
         }

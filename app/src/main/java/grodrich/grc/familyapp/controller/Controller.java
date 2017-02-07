@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import grodrich.grc.familyapp.model.Family;
 import grodrich.grc.familyapp.model.FamilyIdGenerator;
@@ -115,7 +116,9 @@ public class Controller {
 
     public void associateFamily(Family family) {
         if (family != null) {
-            DatabaseOptions.changeUserInformation(getCurrentUser().getUid(),"familyId",family.getFamilyId());
+            for (User user : family.getMembers()){
+                DatabaseOptions.changeUserInformation(user.getId(),"familyId",family.getFamilyId());
+            }
         }else{
             actualUser.setFamilyId("");
         }
@@ -130,6 +133,14 @@ public class Controller {
     }
     public Task<byte[]> getUserImage(){
         return StorageOptions.downloadUserImage();
+    }
+
+    public Hashtable<String,User> getUsers(){
+        return DatabaseOptions.getUsers();
+    }
+
+    public Hashtable<String,Family> getFamilies(){
+        return DatabaseOptions.getFamilies();
     }
 
     public void removeFamily(Family family) {

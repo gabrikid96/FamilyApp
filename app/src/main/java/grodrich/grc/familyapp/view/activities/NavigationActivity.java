@@ -1,5 +1,6 @@
 package grodrich.grc.familyapp.view.activities;
 
+import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -93,6 +94,7 @@ public class NavigationActivity extends OptionsActivity {
 
         if (ctrl.getActualUser().hasFamily() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
             ctrl.getFamilyImage().addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                 @Override
                 public void onSuccess(byte[] bytes) {
                     // Data for "images/island.jpg" is returns, use this as needed
