@@ -81,10 +81,8 @@ public class Controller {
 
     private String generateId() {
         String id = FamilyIdGenerator.getUnicId();
-        for(Family family : DatabaseOptions.getFamilies()){
-            if(id.equals(family.getFamilyId())){
-                id = FamilyIdGenerator.getUnicId();
-            }
+        while (DatabaseOptions.getFamilies().get(id) != null){
+            id = FamilyIdGenerator.getUnicId();
         }
         return id;
     }
@@ -118,12 +116,9 @@ public class Controller {
     public void associateFamily(Family family) {
         if (family != null) {
             DatabaseOptions.changeUserInformation(getCurrentUser().getUid(),"familyId",family.getFamilyId());
-            //actualUser.setFamilyId(family.getFamilyId());
         }else{
             actualUser.setFamilyId("");
         }
-        //registerNewUser(actualUser);
-
     }
 
     public void registerNewFamily(Family family) {
@@ -138,7 +133,7 @@ public class Controller {
     }
 
     public void removeFamily(Family family) {
-        getActualUser().setFamilyId("");
+       /* getActualUser().setFamilyId("");
         DatabaseOptions.deleteFamily(family.getFamilyId());
 
         StorageOptions.deleteFamilyImage(family.getFamilyId());
@@ -146,6 +141,6 @@ public class Controller {
         for (User user : family.getMembers()){
             DatabaseOptions.changeUserInformation(user.getId(),"familyId","");
         }
-        loadDatabaseList();
+        loadDatabaseList();*/
     }
 }

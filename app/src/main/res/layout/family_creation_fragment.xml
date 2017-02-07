@@ -71,21 +71,48 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-
-                <AutoCompleteTextView
-                    android:id="@+id/memberEmail"
-                    android:imeOptions="actionGo"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/membersLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/memberEmail"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true"/>
+                    android:layout_toLeftOf="@+id/btnAddMember"
+                    android:layout_toStartOf="@+id/btnAddMember">
 
-            </android.support.design.widget.TextInputLayout>
+                    <AutoCompleteTextView
+                        android:id="@+id/memberEmail"
+                        android:imeOptions="actionGo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/memberEmail"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1">
+
+                    </AutoCompleteTextView>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnAddMember"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:background="@android:drawable/ic_input_add"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:elevation="0dp"
+                    android:backgroundTint="@color/colorAccent" />
+
+            </RelativeLayout>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:id="@+id/membersList" />
 
             <Button
                 android:id="@+id/btn_create_family"

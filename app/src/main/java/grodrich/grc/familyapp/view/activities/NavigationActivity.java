@@ -98,7 +98,7 @@ public class NavigationActivity extends OptionsActivity {
                     // Data for "images/island.jpg" is returns, use this as needed
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                     Drawable d = new BitmapDrawable(getResources(), bitmap);
-                    ((RelativeLayout)navigationView.getHeaderView(0).findViewById(R.id.header_layout)).setBackground(d);
+                    navigationView.getHeaderView(0).findViewById(R.id.header_layout).setBackground(d);
 
                 }
             }).addOnFailureListener(new OnFailureListener() {

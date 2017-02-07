@@ -102,12 +102,7 @@ public class MyFamilyFragment extends OptionsFragment{
     }
 
     public Family getFamilyById(String id){
-        for(Family family : DatabaseOptions.getFamilies()){
-            if (family.getFamilyId().equals(id)){
-                return family;
-            }
-        }
-        return null;
+        return DatabaseOptions.getFamilies().get(id);
     }
 
     @Override

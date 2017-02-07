@@ -7,14 +7,17 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.Task;
@@ -27,6 +30,7 @@ import java.util.ArrayList;
 import grodrich.grc.familyapp.R;
 import grodrich.grc.familyapp.model.Family;
 import grodrich.grc.familyapp.model.User;
+import grodrich.grc.familyapp.view.activities.OptionsActivity;
 
 /**
  * Created by lidia on 4/09/16.
@@ -39,11 +43,17 @@ public class FamilyCreationFragment extends  OptionsFragment{
     private Button btnCreateFamily;
     private AutoCompleteTextView memberEmail;
     private ProgressBar creationProgressBar;
+    private Button btnAddMember;
+    private ListView membersList;
+
+    private ArrayList<String> emailMembers;
+    private ArrayAdapter<String> stringAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.family_creation_fragment, container, false);
         this.rootView = rootView;
+        emailMembers = new ArrayList<>();
         getViewsByXML();
         listeners();
         return rootView;
@@ -57,6 +67,10 @@ public class FamilyCreationFragment extends  OptionsFragment{
         btnCreateFamily = (Button) findViewById(R.id.btn_create_family);
         creationProgressBar = (ProgressBar) findViewById(R.id.family_progress_bar);
         memberEmail = (AutoCompleteTextView) findViewById(R.id.memberEmail);
+        btnAddMember = (Button) findViewById(R.id.btnAddMember);
+        membersList = (ListView) findViewById(R.id.membersList);
+        stringAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,emailMembers);
+        membersList.setAdapter(stringAdapter);
     }
 
     @Override
@@ -73,6 +87,21 @@ public class FamilyCreationFragment extends  OptionsFragment{
                 select_image();
             }
         });
+        btnAddMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = memberEmail.getText().toString();
+                if (isValidEmail(email)){
+                    emailMembers.add(email);
+                    membersList.setVisibility(View.VISIBLE);
+                    stringAdapter.notifyDataSetChanged();
+                    memberEmail.setText("");
+                }else{
+                    memberEmail.setError(getString(R.string.error_invalid_email));
+                }
+            }
+        });
+
     }
 
     private void select_image() {

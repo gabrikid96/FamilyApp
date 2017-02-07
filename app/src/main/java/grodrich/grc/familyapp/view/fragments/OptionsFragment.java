@@ -37,4 +37,9 @@ public abstract class OptionsFragment extends Fragment {
             return false;
         return true;
     }
+
+    public boolean isValidEmail(String email){
+        return email.contains("@");
+    }
+
 }

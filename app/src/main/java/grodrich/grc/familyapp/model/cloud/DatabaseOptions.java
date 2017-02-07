@@ -8,6 +8,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import grodrich.grc.familyapp.controller.Controller;
 import grodrich.grc.familyapp.model.Family;
@@ -22,8 +23,8 @@ public class DatabaseOptions {
     public static final String USER_REFERENCE = "users";
     public static final String FAMILY_REFERENCE = "families";
 
-    private static ArrayList<User> users;
-    private static ArrayList<Family> families;
+    private static Hashtable<String,User> users;
+    private static Hashtable<String,Family>families;
 
     public static void createNewUser(User user){
         firebaseDatabase.getReference().
@@ -48,11 +49,11 @@ public class DatabaseOptions {
         firebaseDatabase.getReference().child(USER_REFERENCE).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                final ArrayList<User> userList = new ArrayList<>();
+                final Hashtable<String,User> userList = new Hashtable<>();
                 Log.i("LOAD_DATA", "Numero de usuarios: " + snapshot.getChildrenCount());
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     User user = postSnapshot.getValue(User.class);
-                    userList.add(user);
+                    userList.put(user.getEmail(),user);
                 }
                 users = userList;
             }
@@ -69,10 +70,10 @@ public class DatabaseOptions {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Log.i("LOAD_DATA", "Numero de families: " + snapshot.getChildrenCount());
-                ArrayList<Family> familyList = new ArrayList<Family>();
+                Hashtable<String,Family> familyList = new Hashtable<>();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     Family family = postSnapshot.getValue(Family.class);
-                    familyList.add(family);
+                    familyList.put(family.getFamilyId(),family);
                 }
                 families = familyList;
             }
@@ -100,11 +101,9 @@ public class DatabaseOptions {
         });
     }
 
-    public static ArrayList<User> getUsers() {
+    public static Hashtable<String,User> getUsers() {
         return users;
     }
 
-    public static ArrayList<Family> getFamilies() {
-        return families;
-    }
+    public static Hashtable<String,Family> getFamilies() {return families;}
 }
