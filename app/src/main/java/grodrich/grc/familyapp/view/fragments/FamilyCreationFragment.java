@@ -171,7 +171,7 @@ public class FamilyCreationFragment extends  OptionsFragment{
             }
         }
 
-        public void createFamily(){
+        public Family createFamily(){
             ArrayList<User> members = new ArrayList<User>();
             members.add(ctrl.getActualUser());
 
@@ -183,12 +183,13 @@ public class FamilyCreationFragment extends  OptionsFragment{
 
             ctrl.associateFamily(family);
             ctrl.registerNewFamily(family);
+            return family;
         }
 
         @Override
         protected UploadTask doInBackground(Void... params) {
-            createFamily();
-            UploadTask task = ctrl.saveFamilyImage(familyImage);
+            Family family = createFamily();
+            UploadTask task = ctrl.saveFamilyImage(familyImage, family.getFamilyId());
             while (!task.isComplete());
             return task;
         }

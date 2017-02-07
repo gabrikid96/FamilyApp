@@ -25,8 +25,8 @@ public class StorageOptions {
     public static final int USER = 0;
     public static final int FAMILY = 1;
 
-    public static UploadTask saveFamilyImage(ImageView imageView){
-        StorageReference familyRef = firebaseStorage.getReference().child(getImageReference(FAMILY));
+    public static UploadTask saveFamilyImage(ImageView imageView, String id){
+        StorageReference familyRef = firebaseStorage.getReference().child(getImageReference(FAMILY, id));
 
         imageView.setDrawingCacheEnabled(true);
         imageView.buildDrawingCache();
@@ -37,8 +37,8 @@ public class StorageOptions {
         return familyRef.putBytes(data);
     }
 
-    public static UploadTask saveUserImage(ImageView imageView){
-        StorageReference familyRef = firebaseStorage.getReference().child(getImageReference(USER));
+    public static UploadTask saveUserImage(ImageView imageView, String id){
+        StorageReference familyRef = firebaseStorage.getReference().child(getImageReference(USER, id));
 
         imageView.setDrawingCacheEnabled(true);
         imageView.buildDrawingCache();
@@ -48,27 +48,35 @@ public class StorageOptions {
         byte[] data = baos.toByteArray();
         return familyRef.putBytes(data);
     }
-    private static String getImageReference(int referenceType){
+    private static String getImageReference(int referenceType,String id){
         switch (referenceType){
             case FAMILY:
-                return FAMILY_IMAGES_REFERENCE.concat(Controller.getInstance().getActualUser().getFamilyId());
+                return FAMILY_IMAGES_REFERENCE.concat(id);
             case USER:
-                return USERS_IMAGES_REFERENCE.concat(Controller.getInstance().getCurrentUser().getEmail());
+                return USERS_IMAGES_REFERENCE.concat(id);
             default:
                 return null;
         }
-
     }
 
-
-    public static Task<byte[]> downloadFamilyImage(){
-        StorageReference familyImageRefence = firebaseStorage.getReference().child(getImageReference(FAMILY));
+    /**
+     * Download Family image
+     * @param id id family
+     * @return task
+     */
+    public static Task<byte[]> downloadFamilyImage(String id){
+        StorageReference familyImageRefence = firebaseStorage.getReference().child(getImageReference(FAMILY,id));
         final long ONE_MEGABYTE = 1024 * 1024;
         return familyImageRefence.getBytes(ONE_MEGABYTE);
     }
 
-    public static Task<byte[]> downloadUserImage(){
-        StorageReference userImageRefence = firebaseStorage.getReference().child(getImageReference(USER));
+    /**
+     * Download User image
+     * @param id email
+     * @return task
+     */
+    public static Task<byte[]> downloadUserImage(String id){
+        StorageReference userImageRefence = firebaseStorage.getReference().child(getImageReference(USER,id));
         final long ONE_MEGABYTE = 1024 * 1024;
         return userImageRefence.getBytes(ONE_MEGABYTE);
     }

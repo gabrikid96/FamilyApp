@@ -77,7 +77,7 @@ public class NavigationActivity extends OptionsActivity {
     }
 
     private void loadImages(){
-        ctrl.getUserImage().addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        ctrl.getUserImage(ctrl.getCurrentUser().getEmail()).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 // Data for "images/island.jpg" is returns, use this as needed
@@ -93,7 +93,7 @@ public class NavigationActivity extends OptionsActivity {
         });
 
         if (ctrl.getActualUser().hasFamily() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
-            ctrl.getFamilyImage().addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            ctrl.getFamilyImage(ctrl.getActualUser().getFamilyId()).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                 @Override
                 public void onSuccess(byte[] bytes) {

@@ -186,7 +186,7 @@ public class SignInActivity extends OptionsActivity {
                 ctrl.registerNewUser(user);
                 ctrl.updateUser();
 
-                UploadTask taskImage = ctrl.saveUserImage(userImage);
+                UploadTask taskImage = ctrl.saveUserImage(userImage, user.getEmail());
                 while (!taskImage.isComplete());
                 return taskImage;
             }

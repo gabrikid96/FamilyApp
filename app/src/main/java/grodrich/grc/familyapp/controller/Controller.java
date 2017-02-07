@@ -67,12 +67,12 @@ public class Controller {
        return AuthenticateOptions.loginUser(mEmail, mPassword);
     }
 
-    public UploadTask saveFamilyImage(ImageView imageView){
-        return StorageOptions.saveFamilyImage(imageView);
+    public UploadTask saveFamilyImage(ImageView imageView, String id){
+        return StorageOptions.saveFamilyImage(imageView, id);
     }
 
-    public UploadTask saveUserImage(ImageView imageView){
-        return StorageOptions.saveUserImage(imageView);
+    public UploadTask saveUserImage(ImageView imageView, String email){
+        return StorageOptions.saveUserImage(imageView, email);
     }
 
     public Family createFamily(String familyName, String password, ArrayList<User> members){
@@ -128,11 +128,11 @@ public class Controller {
         DatabaseOptions.createNewFamily(family);
     }
 
-    public Task<byte[]> getFamilyImage(){
-        return StorageOptions.downloadFamilyImage();
+    public Task<byte[]> getFamilyImage(String id){
+        return StorageOptions.downloadFamilyImage(id);
     }
-    public Task<byte[]> getUserImage(){
-        return StorageOptions.downloadUserImage();
+    public Task<byte[]> getUserImage(String email){
+        return StorageOptions.downloadUserImage(email);
     }
 
     public Hashtable<String,User> getUsers(){
