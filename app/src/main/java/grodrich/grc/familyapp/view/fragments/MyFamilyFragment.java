@@ -115,7 +115,7 @@ public class MyFamilyFragment extends OptionsFragment{
     }
 
     public Family getFamilyById(String id){
-        return DatabaseOptions.getFamilies().get(id);
+        return ctrl.getFamilies().get(id);
     }
 
     @Override

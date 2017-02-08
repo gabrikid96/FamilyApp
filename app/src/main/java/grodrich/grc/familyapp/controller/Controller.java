@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.Hashtable;
 
 import grodrich.grc.familyapp.model.Family;
 import grodrich.grc.familyapp.model.FamilyIdGenerator;
+import grodrich.grc.familyapp.model.Notification;
 import grodrich.grc.familyapp.model.User;
 import grodrich.grc.familyapp.model.cloud.AuthenticateOptions;
 import grodrich.grc.familyapp.model.cloud.DatabaseOptions;
@@ -54,12 +56,12 @@ public class Controller {
         DatabaseOptions.getUserById(getCurrentUser().getUid());
     }
 
-    public void setActualUser(User user){
-        actualUser = user;
-    }
-
     public User getActualUser() {
         return actualUser;
+    }
+
+    public void setActualUser(User user){
+        this.actualUser = user;
     }
 
 
@@ -112,6 +114,11 @@ public class Controller {
 
     public void registerNewUser(User user) {
         DatabaseOptions.createNewUser(user);
+        DatabaseOptions.createNewNotification(null);
+    }
+
+    public void createNewNotification(Notification notification){
+        DatabaseOptions.createNewNotification(notification);
     }
 
     public void associateFamily(Family family) {
@@ -153,5 +160,9 @@ public class Controller {
             DatabaseOptions.changeUserInformation(user.getId(),"familyId","");
         }
         loadDatabaseList();*/
+    }
+
+    public DatabaseReference getNotificacionReference(){
+        return DatabaseOptions.getNotificacionReference();
     }
 }

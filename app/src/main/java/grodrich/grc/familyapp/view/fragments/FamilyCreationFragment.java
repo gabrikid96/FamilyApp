@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 import grodrich.grc.familyapp.R;
 import grodrich.grc.familyapp.model.Family;
+import grodrich.grc.familyapp.model.Notification;
 import grodrich.grc.familyapp.model.User;
 import grodrich.grc.familyapp.view.activities.OptionsActivity;
 
@@ -154,9 +155,18 @@ public class FamilyCreationFragment extends  OptionsFragment{
         }
     }
 
+    public void sendNotifications(ArrayList<User> members){
+        Notification notification;
+        for (User user : members) {
+            notification = new Notification("The User" + ctrl.getActualUser().getName() + "join you in his family",user.getId(),user.getEmail());
+            ctrl.createNewNotification(notification);
+        }
+    }
+
     public class CreationFamilyTask extends AsyncTask<Void, Void, UploadTask> {
         String familyName;
         String password;
+        Family family;
         public CreationFamilyTask(String familyName, String password) {
             this.familyName = familyName;
             this.password = password;
@@ -188,7 +198,7 @@ public class FamilyCreationFragment extends  OptionsFragment{
 
         @Override
         protected UploadTask doInBackground(Void... params) {
-            Family family = createFamily();
+            family = createFamily();
             UploadTask task = ctrl.saveFamilyImage(familyImage, family.getFamilyId());
             while (!task.isComplete());
             return task;
@@ -199,6 +209,8 @@ public class FamilyCreationFragment extends  OptionsFragment{
             if (task.isSuccessful()){
                 Snackbar.make(inputPassword, "Familia creada", Snackbar.LENGTH_SHORT).show();
                 //TODO : user notification
+                sendNotifications(family.getMembers());
+
             }else{
                 Snackbar.make(inputPassword, "Familia no creada", Snackbar.LENGTH_SHORT).show();
             }
