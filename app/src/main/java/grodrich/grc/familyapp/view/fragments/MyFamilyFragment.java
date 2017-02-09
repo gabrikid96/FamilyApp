@@ -34,7 +34,6 @@ public class MyFamilyFragment extends OptionsFragment{
     private ListView listMembers;
     private ProgressBar loadImageProgressBar;
     private Button btnRemoveFamily;
-    private CircularImageView userImage;
     private LinearLayout linearLayoutImages;
 
     public MyFamilyFragment(){
@@ -56,7 +55,6 @@ public class MyFamilyFragment extends OptionsFragment{
         familyImage = (ImageView) findViewById(R.id.family_image);
         family = getFamilyById(ctrl.getActualUser().getFamilyId());
         loadImageProgressBar = (ProgressBar) findViewById(R.id.image_progress_bar);
-        //userImage = (CircularImageView) findViewById(R.id.circularImage);
         btnRemoveFamily = (Button) findViewById(R.id.btnRemoveFamily);
         linearLayoutImages = (LinearLayout) findViewById(R.id.linearLayout);
         loadFamilyOptions();
@@ -74,14 +72,7 @@ public class MyFamilyFragment extends OptionsFragment{
                 @Override
                 public void onSuccess(byte[] bytes) {
                     // Data for "images/island.jpg" is returns, use this as needed
-                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    CircularImageView circularImageView = new CircularImageView(getContext());
-                    circularImageView.setImageBitmap(bitmap);
-                    circularImageView.setBorderColor(Color.BLACK);
-                    circularImageView.setBorderWidth(2);
-                    circularImageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT));
-                    linearLayoutImages.addView(circularImageView);
+                    linearLayoutImages.addView(createCircularImage(BitmapFactory.decodeByteArray(bytes, 0, bytes.length)));
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -92,6 +83,16 @@ public class MyFamilyFragment extends OptionsFragment{
             });
         }
 
+    }
+
+    private CircularImageView createCircularImage(Bitmap bitmap){
+        CircularImageView circularImageView = new CircularImageView(getContext());
+        circularImageView.setImageBitmap(bitmap);
+        circularImageView.setBorderColor(Color.BLACK);
+        circularImageView.setBorderWidth(2);
+        circularImageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT));
+        return circularImageView;
     }
 
     private void loadFamilyImage() {
@@ -124,11 +125,7 @@ public class MyFamilyFragment extends OptionsFragment{
             @Override
             public void onClick(View view) {
                 ctrl.removeFamily(family);
-                try {
-                    MyFamilyFragment.this.finalize();
-                } catch (Throwable throwable) {
-                    throwable.printStackTrace();
-                }
+                getActivity().getFragmentManager().popBackStack();
             }
         });
     }

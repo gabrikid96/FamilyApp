@@ -151,7 +151,6 @@ public class Controller {
     }
 
     public void removeFamily(Family family) {
-       /* getActualUser().setFamilyId("");
         DatabaseOptions.deleteFamily(family.getFamilyId());
 
         StorageOptions.deleteFamilyImage(family.getFamilyId());
@@ -159,7 +158,6 @@ public class Controller {
         for (User user : family.getMembers()){
             DatabaseOptions.changeUserInformation(user.getId(),"familyId","");
         }
-        loadDatabaseList();*/
     }
 
     public DatabaseReference getNotificacionReference(){
