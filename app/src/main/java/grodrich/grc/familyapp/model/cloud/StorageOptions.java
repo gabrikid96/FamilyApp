@@ -82,6 +82,6 @@ public class StorageOptions {
     }
 
     public static void deleteFamilyImage(String familyId) {
-        firebaseStorage.getReference().child(FAMILY_IMAGES_REFERENCE.concat(familyId)).delete();
+        firebaseStorage.getReference().child(FAMILY_IMAGES_REFERENCE).child(familyId).delete();
     }
 }
