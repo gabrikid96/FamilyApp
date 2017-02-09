@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import grodrich.grc.familyapp.R;
 import grodrich.grc.familyapp.model.Family;
 import grodrich.grc.familyapp.model.User;
 import grodrich.grc.familyapp.model.cloud.DatabaseOptions;
+import grodrich.grc.familyapp.view.activities.NavigationActivity;
 import grodrich.grc.familyapp.view.views.CircularImageView;
 
 /**
@@ -73,6 +75,7 @@ public class MyFamilyFragment extends OptionsFragment{
                 public void onSuccess(byte[] bytes) {
                     // Data for "images/island.jpg" is returns, use this as needed
                     linearLayoutImages.addView(createCircularImage(BitmapFactory.decodeByteArray(bytes, 0, bytes.length)));
+                    //TODO : when the fragment is attach and the images didn't load yet, fail.
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -125,8 +128,21 @@ public class MyFamilyFragment extends OptionsFragment{
             @Override
             public void onClick(View view) {
                 ctrl.removeFamily(family);
-                getActivity().getFragmentManager().popBackStack();
+                getActivity().getSupportFragmentManager().beginTransaction().remove(MyFamilyFragment.this).commit();
+                Log.i("USER",getActivity().getLocalClassName());
             }
         });
     }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        Log.i("USER",NavigationActivity.class.getName() + " " + getActivity().getLocalClassName());
+        Log.i("USER","detacht " + NavigationActivity.class.getName().contains(getActivity().getLocalClassName()));
+        if (NavigationActivity.class.getName().contains(getActivity().getLocalClassName())){
+            ((NavigationActivity)getActivity()).onDetachFragment();
+        }
+    }
+
+
 }

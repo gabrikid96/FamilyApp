@@ -133,9 +133,8 @@ public class NavigationActivity extends OptionsActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Notification notification = dataSnapshot.getValue(Notification.class);
                 if (notification != null) {
-                    //Snackbar.make(navigationView, notification.getText(), Snackbar.LENGTH_SHORT).show();
-                    //PR
-                    Toast.makeText(NavigationActivity.this,notification.getText(),Toast.LENGTH_SHORT).show();
+                    Snackbar.make(navigationView, notification.getText(), Snackbar.LENGTH_SHORT).show();
+                    //Toast.makeText(NavigationActivity.this,notification.getText(),Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -158,7 +157,6 @@ public class NavigationActivity extends OptionsActivity {
                 }else{
                     fragment = new FamilyCreationFragment();
                 }
-
                 break;
             case R.id.tasks_section:
                 break;
@@ -176,12 +174,12 @@ public class NavigationActivity extends OptionsActivity {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.content_frame, fragment)
                     .commit();
-
             getSupportActionBar().setTitle(item.getTitle());
             item.setChecked(true);
         }
 
     }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState)
@@ -195,6 +193,10 @@ public class NavigationActivity extends OptionsActivity {
     {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    public void onDetachFragment(){
+        itemSelected(navigationView.getMenu().findItem(R.id.home_section));
     }
 
 

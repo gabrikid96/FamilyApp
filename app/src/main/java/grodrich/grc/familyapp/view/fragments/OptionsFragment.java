@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 
 import grodrich.grc.familyapp.controller.Controller;
+import grodrich.grc.familyapp.view.activities.NavigationActivity;
 
 /**
  * Created by gabri on 2/09/16.
@@ -41,5 +43,6 @@ public abstract class OptionsFragment extends Fragment {
     public boolean isValidEmail(String email){
         return email.contains("@");
     }
+
 
 }
