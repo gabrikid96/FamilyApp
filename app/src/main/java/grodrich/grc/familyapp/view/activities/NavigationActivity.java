@@ -134,8 +134,7 @@ public class NavigationActivity extends OptionsActivity {
                 Notification notification = dataSnapshot.getValue(Notification.class);
                 if (notification != null) {
                     //Snackbar.make(navigationView, notification.getText(), Snackbar.LENGTH_SHORT).show();
-
-                    
+                    //PR
                     Toast.makeText(NavigationActivity.this,notification.getText(),Toast.LENGTH_SHORT).show();
                 }
             }
