@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "679415118203-mk5maiknjjo77li0iagak0u2o96e3a4u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "grodrich.grc.familyapp",
+            "certificate_hash": "3FA37BB3A50295E40AFDF49A843BCAADA055C432"
+          }
+        },
+        {
           "client_id": "679415118203-nispp80b99nn5307fhu2599as4t7dcof.apps.googleusercontent.com",
           "client_type": 3
         }

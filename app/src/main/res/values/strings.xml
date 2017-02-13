@@ -60,4 +60,5 @@
     <string name="no_conection">Check your internet connection</string>
     <string name="delete_family">Delete Family</string>
     <string name="memberEmail">Members Email</string>
+    <string name="notifications_title">Notifications</string>
 </resources>

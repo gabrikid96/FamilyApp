@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +19,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
@@ -31,7 +28,6 @@ import grodrich.grc.familyapp.R;
 import grodrich.grc.familyapp.model.Family;
 import grodrich.grc.familyapp.model.Notification;
 import grodrich.grc.familyapp.model.User;
-import grodrich.grc.familyapp.view.activities.OptionsActivity;
 
 /**
  * Created by lidia on 4/09/16.
@@ -159,7 +155,7 @@ public class FamilyCreationFragment extends  OptionsFragment{
         Notification notification;
         for (User user : members) {
             notification = new Notification("The User" + ctrl.getActualUser().getName() + "join you in his family",user.getId(),user.getEmail());
-            ctrl.createNewNotification(notification);
+            ctrl.addNotification(notification);
         }
     }
 

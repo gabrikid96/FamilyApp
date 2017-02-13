@@ -114,11 +114,11 @@ public class Controller {
 
     public void registerNewUser(User user) {
         DatabaseOptions.createNewUser(user);
-        DatabaseOptions.createNewNotification(null);
+        DatabaseOptions.addNotification(null);
     }
 
-    public void createNewNotification(Notification notification){
-        DatabaseOptions.createNewNotification(notification);
+    public void addNotification(Notification notification){
+        DatabaseOptions.addNotification(notification);
     }
 
     public void associateFamily(Family family) {

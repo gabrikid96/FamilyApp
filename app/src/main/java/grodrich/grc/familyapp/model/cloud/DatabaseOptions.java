@@ -45,20 +45,19 @@ public class DatabaseOptions {
     public static void createNewFamily(Family family){
         firebaseDatabase.getReference().
         child(FAMILY_REFERENCE).child(family.getFamilyId()).setValue(family);
-        //Save users ids
     }
 
     /**
      * Save a notification information of an user.
      * @param notification notification information
      */
-    public static void createNewNotification(Notification notification){
+    public static void addNotification(Notification notification){
         if (notification == null){
             firebaseDatabase.getReference().child(NOTIFICATION_REFERENCE).
-                    child(Controller.getInstance().getCurrentUser().getUid()).setValue(notification);
+                    child(Controller.getInstance().getCurrentUser().getUid()).child(notification.getText()).setValue(notification);
         }else{
             firebaseDatabase.getReference().child(NOTIFICATION_REFERENCE).
-                    child(notification.getUserId()).setValue(notification);
+                    child(notification.getUserId()).child(notification.getText()).setValue(notification);
         }
 
     }
