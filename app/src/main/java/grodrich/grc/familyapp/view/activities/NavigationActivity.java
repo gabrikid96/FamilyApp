@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -154,6 +155,32 @@ public class NavigationActivity extends OptionsActivity {
 
             }
         });
+        ctrl.getNotificacionReference().child(ctrl.getCurrentUser().getUid()).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void itemSelected(MenuItem item) {
@@ -229,11 +256,26 @@ public class NavigationActivity extends OptionsActivity {
         return true;
     }
 
+    public void updateNotificationCounter(){
+        int num = 0;
+        for(Notification notification : notifications){
+            num += notification.isRead() ? 1 : 0;
+        }
+        getCounter().setText(String.valueOf(num));
+    }
+
+    public TextView getCounter(){
+        return (TextView) toolbarMenu.findItem(R.id.notifications).getActionView().findViewById(R.id.notification_count);
+    }
+
+    /**
+     * Put the number of notifications and set the listener when click the bell.
+     */
     private void toolbarListener(){
-        TextView counter = (TextView) toolbarMenu.findItem(R.id.notifications).getActionView().findViewById(R.id.notification_count);
-        counter.setText(String.valueOf(notifications.size()));
+        updateNotificationCounter();
         //TODO : listener
     }
+
 
 
 
